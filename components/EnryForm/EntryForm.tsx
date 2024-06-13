@@ -1,6 +1,4 @@
 'use client';
-import useFormInputStore from '@/state/formInputStore';
-import { FormEntry } from '@/types/formEntry.type';
 import {
   Button,
   FormControl,
@@ -8,15 +6,20 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { v4 as uuid4 } from 'uuid';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { v4 as uuid4 } from 'uuid';
+
+import useFormInputStore from '@/state/formInputStore';
+import { FormEntry } from '@/types/formEntry.type';
 import { formSchema } from '@/zod/formSchema';
 
-const Form = () => {
-  const { formEntries, addInput } = useFormInputStore();
+const EntryForm = () => {
+  const { addInput } = useFormInputStore();
+
   const router = useRouter();
+
   const {
     handleSubmit,
     register,
@@ -25,15 +28,17 @@ const Form = () => {
   } = useForm<FormEntry>({
     resolver: zodResolver(formSchema),
   });
-  const onSubmit: SubmitHandler<FormEntry> = (formInput) => {
+
+  const onSubmit: SubmitHandler<FormEntry> = formInput => {
     formInput.id = uuid4();
     addInput(formInput);
     reset();
     router.push('/list');
   };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <FormControl isInvalid={!!errors.firstName}>
+      <FormControl isInvalid={!!errors.firstName} mb='7'>
         <FormLabel htmlFor='firstName'>First Name</FormLabel>
         <Input
           id='firstName'
@@ -45,7 +50,7 @@ const Form = () => {
           {errors.firstName && errors.firstName.message}
         </FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={!!errors.lastName}>
+      <FormControl isInvalid={!!errors.lastName} mb='7'>
         <FormLabel htmlFor='lastName'>Last Name</FormLabel>
         <Input
           id='lastName'
@@ -57,7 +62,7 @@ const Form = () => {
           {errors.lastName && errors.lastName.message}
         </FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={!!errors.age}>
+      <FormControl isInvalid={!!errors.age} mb='7'>
         <FormLabel htmlFor='age'>Age</FormLabel>
         <Input
           type='number'
@@ -68,7 +73,7 @@ const Form = () => {
         />
         <FormErrorMessage>{errors.age && errors.age.message}</FormErrorMessage>
       </FormControl>
-      <FormControl isInvalid={!!errors.email}>
+      <FormControl isInvalid={!!errors.email} mb='7'>
         <FormLabel htmlFor='email'>Email</FormLabel>
         <Input
           id='email'
@@ -87,4 +92,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default EntryForm;

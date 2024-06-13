@@ -6,15 +6,17 @@ interface UserStateStore {
   logout: () => void;
 }
 
-const useUserStore = create<UserStateStore>((set) => ({
+const useUserStore = create<UserStateStore>(set => ({
   isLoggedIn: false,
+
   login: () =>
-    set((state) => ({
+    set(state => ({
       ...state,
       isLoggedIn: true,
     })),
+
   logout: () =>
-    set((state) => ({
+    set(state => ({
       ...state,
       isLoggedIn: false,
     })),

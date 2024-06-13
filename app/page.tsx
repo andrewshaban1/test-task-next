@@ -1,5 +1,7 @@
 import { Text } from '@chakra-ui/react';
 
-export default function Home() {
+const Home = () => {
   return <Text>Welcome to Test Task Application!</Text>;
-}
+};
+
+export default Home;

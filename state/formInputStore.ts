@@ -1,5 +1,6 @@
-import { FormEntry } from '@/types/formEntry.type';
 import { create } from 'zustand';
+
+import { FormEntry } from '@/types/formEntry.type';
 
 interface FormInputStore {
   formEntries: FormEntry[];
@@ -80,19 +81,19 @@ const initialState: FormEntry[] = [
   },
 ];
 
-const useFormInputStore = create<FormInputStore>((set) => ({
+const useFormInputStore = create<FormInputStore>(set => ({
   formEntries: initialState,
+
   addInput: (formEntry: FormEntry) =>
-    set((state) => ({
+    set(state => ({
       ...state,
       formEntries: [...state.formEntries, formEntry],
     })),
+
   deleteInput: (formEntryId: string) =>
-    set((state) => ({
+    set(state => ({
       ...state,
-      formEntries: state.formEntries.filter(
-        (entry) => entry.id !== formEntryId
-      ),
+      formEntries: state.formEntries.filter(entry => entry.id !== formEntryId),
     })),
 }));
 

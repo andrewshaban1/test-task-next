@@ -1,11 +1,13 @@
 'use client';
 
-import { HStack } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
+import { HStack } from '@chakra-ui/react';
+
 import useUserStore from '@/state/userStore';
 
 const NavBar = () => {
   const { isLoggedIn, login, logout } = useUserStore();
+
   return (
     <HStack gap='10'>
       {isLoggedIn ? (

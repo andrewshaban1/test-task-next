@@ -1,5 +1,4 @@
 'use client';
-import useFormInputStore from '@/state/formInputStore';
 import {
   Button,
   HStack,
@@ -8,11 +7,14 @@ import {
   UnorderedList,
 } from '@chakra-ui/react';
 
-const LIstOfEntries = () => {
+import useFormInputStore from '@/state/formInputStore';
+
+const ListOfEntries = () => {
   const { formEntries, deleteInput } = useFormInputStore();
+
   return (
     <UnorderedList styleType='none'>
-      {formEntries.map((entry) => (
+      {formEntries.map(entry => (
         <ListItem key={entry.id} paddingY='1'>
           <HStack justify='space-between'>
             <Text>
@@ -22,7 +24,8 @@ const LIstOfEntries = () => {
             <Button
               size='sm'
               colorScheme='teal'
-              onClick={() => deleteInput(entry.id)}>
+              onClick={() => deleteInput(entry.id)}
+            >
               Delete
             </Button>
           </HStack>
@@ -32,4 +35,4 @@ const LIstOfEntries = () => {
   );
 };
 
-export default LIstOfEntries;
+export default ListOfEntries;

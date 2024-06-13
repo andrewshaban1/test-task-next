@@ -1,23 +1,26 @@
+import { Box, VStack } from '@chakra-ui/react';
 import type { Metadata } from 'next';
-import { Providers } from './providers';
-import NavBar from '@/components/NavBar';
-import { Grid, GridItem, VStack, Flex, Box } from '@chakra-ui/react';
+
+import Footer from '@/components/layout/Footer/Footer';
+import NavBar from '@/components/layout/NavBar/NavBar';
+
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'Test Task Next.js',
   description: 'Test task',
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang='en'>
       <body>
         <Providers>
-          <VStack gap='2' width='50%' minHeight='100vh' align='self-start'>
+          <VStack gap='2' minHeight='100vh' align='self-start'>
             <Box padding='3' bg='teal' color='white' height='50' width='100%'>
               <NavBar />
             </Box>
@@ -29,12 +32,15 @@ export default function RootLayout({
               bg='teal'
               color='white'
               maxHeight='100'
-              width='100%'>
-              Footer
+              width='100%'
+            >
+              <Footer />
             </Box>
           </VStack>
         </Providers>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

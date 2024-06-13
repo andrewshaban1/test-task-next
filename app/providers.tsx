@@ -2,6 +2,8 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import { PropsWithChildren } from 'react';
 
-export function Providers({ children }: PropsWithChildren) {
+const Providers = ({ children }: PropsWithChildren) => {
   return <ChakraProvider>{children}</ChakraProvider>;
-}
+};
+
+export default Providers;

@@ -1,10 +1,10 @@
 import AuthCheck from '@/components/AuthCheck';
-import Form from '@/components/Form';
+import EntryForm from '@/components/EnryForm';
 
 const NewEntry = () => {
   return (
     <AuthCheck>
-      <Form />
+      <EntryForm />
     </AuthCheck>
   );
 };

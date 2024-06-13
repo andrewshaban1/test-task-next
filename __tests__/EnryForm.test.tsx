@@ -1,8 +1,10 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
-import Form from '@/components/Form';
 
-describe('Form', () => {
+import { fireEvent, render, screen } from '@testing-library/react';
+
+import Form from '@/components/EnryForm/EntryForm';
+
+describe('EntryForm', () => {
   test(`Renders the form elements`, () => {
     render(<Form />);
 
@@ -25,7 +27,7 @@ describe('Form', () => {
       await screen.findByText(/Last Name is required/i)
     ).toBeInTheDocument();
     expect(
-      await screen.findByText(/Expected number, received nan/i)
+      await screen.findByText(/Value must be a number/i)
     ).toBeInTheDocument();
     expect(
       await screen.findByText(/Invalid email address/i)

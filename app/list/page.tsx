@@ -1,10 +1,12 @@
 import AuthCheck from '@/components/AuthCheck';
-import LIstOfEntries from '@/components/LIstOfEntries';
+import LIstOfEntries from '@/components/ListOfEntries/ListOfEntries';
 
-export default function Home() {
+const List = () => {
   return (
     <AuthCheck>
       <LIstOfEntries />
     </AuthCheck>
   );
-}
+};
+
+export default List;
